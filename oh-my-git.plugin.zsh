@@ -33,6 +33,8 @@ function oh_my_git_info {
 		local yellow="${omg_yellow:-%F{yellow}}";
 		local violet="${omg_violet:-%F{magenta}}";
 		local reset="${omg_reset:-%{%f%k%b%}}";
+		local black_over_white="%K{black}%F{white}";
+		local green_over_white="%K{green}%F{white}";
 	else
 		local on="${omg_on:-\[\e[0;37m\]}";
 		local off="${omg_off:-\[\e[1;30m\]}";
@@ -47,13 +49,13 @@ function oh_my_git_info {
 	# ⚙ ♨ ♋ ㍖♫𝄢♬♪𝄆𝄇𝄈𝄐〖⦖〘〙》〰︴෴⸚⌁⌀⌖𝌁⿓⎃☢☣☠☤⚕☸⚔☉♁☄⚚⚛  ⌘⎋⏎⌤⌥⌃⌅⇧⇪⌫⌦⇥⬆⬇⬍✔✘✖✭☲✎⌫ᄉ⇅⚯»Ⴤ↶↑±
 	# ⇪ ⇫ ⇬ ⇭ ⇮ ⇯ ⇳ ⥮ ⥯ ↥ ↧ ↞ ↠ ↟ ↡ ➟ ➠ 
 	# Symbols
-	if [[ -z "${is_a_git_repo_symbol}" ]]; then local is_a_git_repo_symbol="±"; fi
-	if [[ -z "${is_a_git_repo_color}" ]]; then local is_a_git_repo_color="$violet"; fi
-	if [[ -z "${has_untracked_files_symbol}" ]]; then local has_untracked_files_symbol="〜"; fi
+	if [[ -z "${is_a_git_repo_symbol}" ]]; then local is_a_git_repo_symbol=""; fi
+	if [[ -z "${is_a_git_repo_color}" ]]; then local is_a_git_repo_color="$black_over_white"; fi
+	if [[ -z "${has_untracked_files_symbol}" ]]; then local has_untracked_files_symbol=""; fi
 	if [[ -z "${has_untracked_files_color}" ]]; then local has_untracked_files_color="$red"; fi
-	if [[ -z "${has_adds_symbol}" ]]; then local has_adds_symbol="✚"; fi
+	if [[ -z "${has_adds_symbol}" ]]; then local has_adds_symbol=""; fi
 	if [[ -z "${has_adds_color}" ]]; then local has_adds_color="$yellow"; fi
-	if [[ -z "${has_deletions_symbol}" ]]; then local has_deletions_symbol="-"; fi
+	if [[ -z "${has_deletions_symbol}" ]]; then local has_deletions_symbol=""; fi
 	if [[ -z "${has_deletions_color}" ]]; then local has_deletions_color="$red"; fi
 	if [[ -z "${has_deletions_cached_symbol}" ]]; then local has_deletions_cached_symbol="✘"; fi
 	if [[ -z "${has_deletions_cached_color}" ]]; then local has_deletions_cached_color="$yellow"; fi
@@ -63,27 +65,27 @@ function oh_my_git_info {
 	if [[ -z "${has_modifications_cached_color}" ]]; then local has_modifications_cached_color="$yellow"; fi
 	if [[ -z "${ready_to_commit_symbol}" ]]; then local ready_to_commit_symbol="✔"; fi
 	if [[ -z "${ready_to_commit_color}" ]]; then local ready_to_commit_color="$green"; fi
-	if [[ -z "${is_on_a_tag_symbol}" ]]; then local is_on_a_tag_symbol="⌫"; fi
-	if [[ -z "${is_on_a_tag_color}" ]]; then local is_on_a_tag_color="$yellow"; fi
+	if [[ -z "${is_on_a_tag_symbol}" ]]; then local is_on_a_tag_symbol=""; fi
+	if [[ -z "${is_on_a_tag_color}" ]]; then local is_on_a_tag_color="$green_on_white"; fi
 	if [[ -z "${needs_to_merge_symbol}" ]]; then local needs_to_merge_symbol="ᄉ"; fi
 	if [[ -z "${needs_to_merge_color}" ]]; then local needs_to_merge_color="$yellow"; fi
 	if [[ -z "${has_upstream_symbol}" ]]; then local has_upstream_symbol="⬍"; fi
 	if [[ -z "${has_upstream_color}" ]]; then local has_upstream_color="$on"; fi
 	if [[ -z "${has_no_upstream_color}" ]]; then local has_no_upstream_color="$on"; fi
-	if [[ -z "${detached_symbol}" ]]; then local detached_symbol="⫘"; fi
+	if [[ -z "${detached_symbol}" ]]; then local detached_symbol=""; fi
 	if [[ -z "${detached_color}" ]]; then local detached_color="$red"; fi
 	if [[ -z "${detached_current_commit_color}" ]]; then local detached_current_commit_color="$on"; fi
 	if [[ -z "${can_fast_forward_symbol}" ]]; then local can_fast_forward_symbol="⋙"; fi
 	if [[ -z "${can_fast_forward_color}" ]]; then local can_fast_forward_color="$on"; fi
 	if [[ -z "${has_diverged_symbol}" ]]; then local has_diverged_symbol="Ⴤ"; fi
 	if [[ -z "${has_diverged_color}" ]]; then local has_diverged_color="$red"; fi
-	if [[ -z "${rebase_tracking_branch_symbol}" ]]; then local rebase_tracking_branch_symbol="⬿"; fi
+	if [[ -z "${rebase_tracking_branch_symbol}" ]]; then local rebase_tracking_branch_symbol=""; fi
 	if [[ -z "${rebase_tracking_branch_color}" ]]; then local rebase_tracking_branch_color="$reset"; fi
 	if [[ -z "${merge_tracking_branch_symbol}" ]]; then local merge_tracking_branch_symbol="ᄉ"; fi
 	if [[ -z "${merge_tracking_branch_color}" ]]; then local merge_tracking_branch_color="$reset"; fi
-	if [[ -z "${should_push_symbol}" ]]; then local should_push_symbol="⤊"; fi
+	if [[ -z "${should_push_symbol}" ]]; then local should_push_symbol="'"; fi
 	if [[ -z "${should_push_color}" ]]; then local should_push_color="$on"; fi
-	if [[ -z "${has_stashes_symbol}" ]]; then local has_stashes_symbol="★"; fi
+	if [[ -z "${has_stashes_symbol}" ]]; then local has_stashes_symbol=""; fi
 	if [[ -z "${has_stashes_color}" ]]; then local has_stashes_color="$yellow"; fi
 	if [[ -z "${commits_behind_symbol}" ]]; then local commits_behind_symbol="-"; fi
 	if [[ -z "${commits_behind_color}" ]]; then local commits_behind_color="$reset"; fi
@@ -94,13 +96,13 @@ function oh_my_git_info {
 
 
 	# flags
-	if [[ -z "${display_has_upstream}" ]]; then local display_has_upstream=false; fi
-	if [[ -z "${display_tag}" ]]; then local display_tag=false; fi
+	if [[ -z "${display_has_upstream}" ]]; then local display_has_upstream=true; fi
+	if [[ -z "${display_tag}" ]]; then local display_tag=true; fi
 	if [[ -z "${display_tag_name}" ]]; then local display_tag_name=true; fi
 	if [[ -z "${use_color_off}" ]]; then local use_color_off=false; fi
 	if [[ -z "${print_unactive_flags_space}" ]]; then local print_unactive_flags_space=true; fi
 	if [[ -z "${display_git_symbol}" ]]; then local display_git_symbol=true; fi
-	if [[ -z "${display_git_current_action}" ]]; then local display_git_current_action=false; fi
+	if [[ -z "${display_git_current_action}" ]]; then local display_git_current_action=true; fi
 
 	# Early return if git repo is configured to be hidden
 	if [[ "$(git config --get oh-my-zsh.hide-status)" == "1" ]]; then return; fi
